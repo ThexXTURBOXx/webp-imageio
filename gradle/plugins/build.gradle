@@ -1,11 +1,28 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
+
 plugins {
     id("java-gradle-plugin")
     alias(libs.plugins.starter.library.kotlin)
     alias(libs.plugins.osacky.doctor)
 }
 
+def targetJavaVersion = JavaVersion.VERSION_1_8
+
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(targetJavaVersion.majorVersion.toInteger())
+}
+
+java {
+    compileJava {
+        options.release.set targetJavaVersion.majorVersion.toInteger()
+    }
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(targetJavaVersion.majorVersion))
+    }
+}
+
+tasks.withType(KotlinCompile).configureEach {
+    kotlinOptions.jvmTarget = targetJavaVersion
 }
 
 gradlePlugin {

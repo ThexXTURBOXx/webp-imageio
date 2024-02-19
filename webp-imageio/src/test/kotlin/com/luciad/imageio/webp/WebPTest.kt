@@ -7,9 +7,8 @@ import com.luciad.imageio.webp.utils.requireWebpImageReader
 import com.luciad.imageio.webp.utils.requireWebpImageWriter
 import com.luciad.imageio.webp.utils.writeWebpImage
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.condition.DisabledOnJre
-import org.junit.jupiter.api.condition.JRE
 import org.junit.jupiter.api.io.TempDir
 import java.awt.image.BufferedImage
 import java.awt.image.DataBufferInt
@@ -86,7 +85,7 @@ class WebPTest {
     }
 
     @Test
-    @DisabledOnJre(JRE.JAVA_9) // for some reason Java 9 can't read JPEGs with indexed colors
+    @Disabled // for some reason Java can't read JPEGs with indexed colors
     fun nonRgbColorSpace(@TempDir tempDir: Path) {
         val inputImage1 = ImageIO.read(readResource("non_rgb_1.jpg").inputStream())
         val inputImage2 = ImageIO.read(readResource("non_rgb_2.jpeg").inputStream())
