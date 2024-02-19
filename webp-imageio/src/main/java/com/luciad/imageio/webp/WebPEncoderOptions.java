@@ -15,7 +15,7 @@
  */
 package com.luciad.imageio.webp;
 
-final class WebPEncoderOptions implements Runnable {
+final class WebPEncoderOptions implements AutoCloseable {
 
   long fPointer;
 
@@ -27,7 +27,13 @@ final class WebPEncoderOptions implements Runnable {
   }
 
   @Override
-  public void run() {
+  protected void finalize() throws Throwable {
+    super.finalize();
+    close();
+  }
+
+  @Override
+  public void close() {
     deleteConfig(fPointer);
     fPointer = 0L;
   }

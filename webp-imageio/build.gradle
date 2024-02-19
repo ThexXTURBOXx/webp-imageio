@@ -10,9 +10,10 @@ tasks.withType(Test).configureEach {
     useJUnitPlatform()
 }
 
-def targetJavaVersion = JavaVersion.VERSION_1_9
+def targetJavaVersion = JavaVersion.VERSION_1_8
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(targetJavaVersion.majorVersion))
 tasks.withType(JavaCompile).configureEach {
-    options.release.set(targetJavaVersion.majorVersion.toInteger())
+    options.setRelease(null)
     options.headerOutputDirectory.set(rootProject.file("libwebp-jni/src/main/c"))
 }
 tasks.withType(KotlinCompile).configureEach {
@@ -25,7 +26,7 @@ tasks.withType(Javadoc).configureEach {
     }
 }
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(targetJavaVersion.majorVersion.toInteger())
     explicitApi()
 }
 
@@ -34,7 +35,7 @@ tasks.register("generateVersionProperties", WriteProperties) { WriteProperties p
     props.property("webp_imageio_version", version)
 }
 
-[9, 11, 17].forEach { majorVersion ->
+[8, 11, 17, 21].forEach { majorVersion ->
     def jdkTest = tasks.register("testJdk$majorVersion", Test) {
         javaLauncher = javaToolchains.launcherFor {
             languageVersion = JavaLanguageVersion.of(majorVersion)
