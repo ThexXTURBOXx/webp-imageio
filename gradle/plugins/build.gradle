@@ -13,6 +13,9 @@ kotlin {
 }
 
 java {
+    compileJava {
+        options.release.set targetJavaVersion.majorVersion.toInteger()
+    }
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(targetJavaVersion.majorVersion))
     }
