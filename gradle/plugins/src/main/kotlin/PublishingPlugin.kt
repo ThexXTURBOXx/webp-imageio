@@ -4,7 +4,6 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionContainer
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.language.jvm.tasks.ProcessResources
-import org.jetbrains.dokka.gradle.DokkaTask
 
 class PublishingPlugin : Plugin<Project> {
 
@@ -23,7 +22,7 @@ class PublishingPlugin : Plugin<Project> {
             publishToMavenCentral()
             coordinates(group.toString(), name, version.toString())
 
-            signAllPublications()
+            //signAllPublications()
 
             configureBasedOnAppliedPlugins()
 

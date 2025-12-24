@@ -31,7 +31,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "com.github.usefulness"
+rootProject.name = "de.femtopedia"
 
 includeBuild("gradle/plugins")
 include("webp-imageio")

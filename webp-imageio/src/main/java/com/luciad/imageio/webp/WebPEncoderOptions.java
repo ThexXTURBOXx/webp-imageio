@@ -25,8 +25,6 @@ final class WebPEncoderOptions implements Runnable {
     if (fPointer == 0) {
       throw new OutOfMemoryError();
     }
-
-    WebPWrapper.cleaner.register(this, this);
   }
 
   @Override

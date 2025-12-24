@@ -1,9 +1,9 @@
 plugins {
     alias(libs.plugins.starter.config)
-    alias(libs.plugins.starter.versioning)
+    //alias(libs.plugins.starter.versioning)
     alias(libs.plugins.osacky.doctor)
 }
 
 commonConfig {
-    javaVersion = JavaVersion.VERSION_1_9
+    javaVersion = JavaVersion.VERSION_1_8
 }

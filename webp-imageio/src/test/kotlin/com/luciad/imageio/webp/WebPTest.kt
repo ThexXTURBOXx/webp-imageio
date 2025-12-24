@@ -86,7 +86,7 @@ class WebPTest {
     }
 
     @Test
-    @DisabledOnJre(JRE.JAVA_9) // for some reason Java 9 can't read JPEGs with indexed colors
+    @DisabledOnJre(JRE.JAVA_8, JRE.JAVA_9) // for some reason Java <= 9 can't read JPEGs with indexed colors
     fun nonRgbColorSpace(@TempDir tempDir: Path) {
         val inputImage1 = ImageIO.read(readResource("non_rgb_1.jpg").inputStream())
         val inputImage2 = ImageIO.read(readResource("non_rgb_2.jpeg").inputStream())
